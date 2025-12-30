@@ -1,3 +1,6 @@
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
 import { prisma } from "@/app/lib/prisma";
 
 export async function POST(req) {

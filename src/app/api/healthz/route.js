@@ -1,10 +1,6 @@
-import { prisma } from "@/app/lib/prisma";
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 export async function GET() {
-  try {
-    await prisma.$queryRaw`SELECT 1`;
-    return Response.json({ ok: true });
-  } catch (error) {
-    return Response.json({ ok: false }, { status: 500 });
-  }
+  return Response.json({ ok: true });
 }
