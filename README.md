@@ -21,7 +21,7 @@ expiry time (TTL) and maximum view limits.
 ## Project Setup (Run Locally)
 
 1. Clone the repository
-git clone <your-repository-url>
+git clone https://github.com/pawarsheetal1610/pastebin-lite
 cd pastebin-lite
 
 2. Install dependencies

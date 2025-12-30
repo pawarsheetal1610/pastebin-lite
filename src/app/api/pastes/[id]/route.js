@@ -1,4 +1,4 @@
-import { prisma } from "../../lib/prisma";
+import { prisma } from "@/app/lib/prisma";
 
 function getNow(req) {
   if (process.env.TEST_MODE === "1") {

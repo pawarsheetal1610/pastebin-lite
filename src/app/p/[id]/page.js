@@ -1,4 +1,4 @@
-import { prisma } from "../../lib/prisma";
+import { prisma } from "@/app/lib/prisma";
 
 export default async function PastePage(props) {
   const { id } = await props.params;
