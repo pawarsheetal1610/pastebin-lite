@@ -1,13 +1,11 @@
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+export const revalidate = 0;
+export const fetchCache = "force-no-store";
 
 import { prisma } from "@/app/lib/prisma";
 
 function getNow(req) {
-  if (process.env.TEST_MODE === "1") {
-    const h = req.headers.get("x-test-now-ms");
-    if (h) return new Date(Number(h));
-  }
   return new Date();
 }
 
@@ -27,7 +25,10 @@ export async function GET(req, { params }) {
   }
 
   if (paste.maxViews && paste.viewCount >= paste.maxViews) {
-    return Response.json({ error: "View limit exceeded" }, { status: 404 });
+    return Response.json(
+      { error: "View limit exceeded" },
+      { status: 404 }
+    );
   }
 
   await prisma.paste.update({
@@ -35,11 +36,5 @@ export async function GET(req, { params }) {
     data: { viewCount: { increment: 1 } },
   });
 
-  return Response.json({
-    content: paste.content,
-    remaining_views: paste.maxViews
-      ? paste.maxViews - paste.viewCount - 1
-      : null,
-    expires_at: paste.expiresAt,
-  });
+  return Response.json({ content: paste.content });
 }
